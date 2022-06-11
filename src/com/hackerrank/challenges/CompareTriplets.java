@@ -57,9 +57,9 @@ public class CompareTriplets {
                 int intA = a.get(i);
                 int intB = b.get(i);
                 if (intA > intB) {
-                    aliceResult = aliceResult + 1;
+                    aliceResult++;
                 } else if (intA < intB) {
-                    bobResult = bobResult + 1;
+                    bobResult++;
                 }
             }
             result.add(aliceResult);
