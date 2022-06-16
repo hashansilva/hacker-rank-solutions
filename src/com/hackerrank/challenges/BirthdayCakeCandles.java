@@ -44,12 +44,10 @@ public class BirthdayCakeCandles {
 
     private static class Result {
         public static int birthdayCakeCandles(List<Integer> candles) {
-            int result;
             Collections.sort(candles);
             Collections.reverse(candles);
             int tallestCandle = candles.get(0);
-            result = (int) candles.stream().filter(candle -> candle == tallestCandle).count();
-            return result;
+            return (int) candles.stream().filter(candle -> candle == tallestCandle).count();
         }
     }
 }
