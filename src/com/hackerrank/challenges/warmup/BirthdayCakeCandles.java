@@ -12,26 +12,28 @@
  * copies or substantial portions of the Software.
  */
 
-package com.hackerrank.challenges;
+package com.hackerrank.challenges.warmup;
 
 import java.io.*;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
-public class AVeryBigNumber {
+public class BirthdayCakeCandles {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
-        int arCount = Integer.parseInt(bufferedReader.readLine().trim());
+        int candlesCount = Integer.parseInt(bufferedReader.readLine().trim());
 
-        List<Long> ar = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-                .map(Long::parseLong)
+        List<Integer> candles = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+                .map(Integer::parseInt)
                 .collect(toList());
 
-        long result = Result.aVeryBigSum(ar);
+        int result = Result.birthdayCakeCandles(candles);
 
         bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();
@@ -41,8 +43,11 @@ public class AVeryBigNumber {
     }
 
     private static class Result {
-        public static long aVeryBigSum(List<Long> ar) {
-            return ar.stream().mapToLong(Long::longValue).sum();
+        public static int birthdayCakeCandles(List<Integer> candles) {
+            Collections.sort(candles);
+            Collections.reverse(candles);
+            int tallestCandle = candles.get(0);
+            return (int) candles.stream().filter(candle -> candle == tallestCandle).count();
         }
     }
 }

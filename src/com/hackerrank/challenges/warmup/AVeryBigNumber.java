@@ -12,43 +12,37 @@
  * copies or substantial portions of the Software.
  */
 
-package com.hackerrank.challenges;
+package com.hackerrank.challenges.warmup;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.List;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
-public class MinMaxSum {
+public class AVeryBigNumber {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
-        List<Integer> arr = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-                .map(Integer::parseInt)
+        int arCount = Integer.parseInt(bufferedReader.readLine().trim());
+
+        List<Long> ar = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+                .map(Long::parseLong)
                 .collect(toList());
 
-        Result.miniMaxSum(arr);
+        long result = Result.aVeryBigSum(ar);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
 
         bufferedReader.close();
+        bufferedWriter.close();
     }
 
     private static class Result {
-        public static void miniMaxSum(List<Integer> arr) {
-            List<Integer> sortedList = arr.stream().sorted().collect(toList());
-            int max = 0;
-            int min = 0;
-            for (int i = 0; i < sortedList.size() - 1; i++) {
-                if (i >= 1) {
-                    max = max + sortedList.get(i);
-                }
-                if (i <= sortedList.size() - 2) {
-                    min = min + sortedList.get(i);
-                }
-            }
-            System.out.println(min+" "+max);
+        public static long aVeryBigSum(List<Long> ar) {
+            return ar.stream().mapToLong(Long::longValue).sum();
         }
     }
 }

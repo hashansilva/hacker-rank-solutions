@@ -12,7 +12,7 @@
  * copies or substantial portions of the Software.
  */
 
-package com.hackerrank.challenges;
+package com.hackerrank.challenges.warmup;
 
 import java.io.BufferedReader;
 import java.io.IOException;

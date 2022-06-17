@@ -12,30 +12,24 @@
  * copies or substantial portions of the Software.
  */
 
-package com.hackerrank.challenges;
+package com.hackerrank.challenges.warmup;
 
 import java.io.*;
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Stream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import static java.util.stream.Collectors.toList;
-
-public class BirthdayCakeCandles {
+public class TimeConversion {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
-        int candlesCount = Integer.parseInt(bufferedReader.readLine().trim());
+        String s = bufferedReader.readLine();
 
-        List<Integer> candles = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-                .map(Integer::parseInt)
-                .collect(toList());
+        String result = Result.timeConversion(s);
 
-        int result = Result.birthdayCakeCandles(candles);
-
-        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.write(result);
         bufferedWriter.newLine();
 
         bufferedReader.close();
@@ -43,11 +37,16 @@ public class BirthdayCakeCandles {
     }
 
     private static class Result {
-        public static int birthdayCakeCandles(List<Integer> candles) {
-            Collections.sort(candles);
-            Collections.reverse(candles);
-            int tallestCandle = candles.get(0);
-            return (int) candles.stream().filter(candle -> candle == tallestCandle).count();
+        public static String timeConversion(String s) {
+            DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss aa");
+            DateFormat outputFormat = new SimpleDateFormat("HH:mm:ss");
+
+            try {
+                Date date = dateFormat.parse(s);
+                return outputFormat.format(date);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
