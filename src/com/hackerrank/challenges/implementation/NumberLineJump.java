@@ -44,7 +44,7 @@ public class NumberLineJump {
         public static String kangaroo(int x1, int v1, int x2, int v2) {
             int vdiff = v1 - v2;
             int xdiff = x1 - x2;
-            if (xdiff <=0 && vdiff <= 0) {
+            if (xdiff <= 0 && vdiff <= 0) {
                 return "NO";
             }
             return (xdiff % vdiff == 0 ? "YES" : "NO");
