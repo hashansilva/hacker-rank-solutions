@@ -90,4 +90,49 @@ public class Result {
         } while (n > 0);
         System.out.println(result);
     }
+
+    public static String appendAndDelete(String s, String t, int k) {
+        String result = "No";
+        int commonLength = 0;
+        int minLength = Math.min(s.length(), t.length());
+
+        for (int i = 0; i < minLength; i++) {
+            if (s.charAt(i) == t.charAt(i)) {
+                commonLength++;
+            } else {
+                break;
+            }
+        }
+        // Total operations required to transform s into t
+        int totalOps = (s.length() - commonLength) + (t.length() - commonLength);
+
+        if (totalOps <= k && ((k - totalOps) % 2 == 0 || k >= s.length() + t.length())) {
+            result = "Yes";
+        }
+        return result;
+    }
+
+    public static int squares(int a, int b) {
+       int result = 0;
+       int squareRoot = (int) Math.sqrt(a);
+        if (squareRoot * squareRoot == a) {
+            result++;
+        }
+        for (int i = squareRoot+1; i * i <= b; i++) {
+            result++;
+        }
+       return result;
+    }
+
+    public static int libraryFine(int d1, int m1, int y1, int d2, int m2, int y2) {
+        int result = 0;
+        if (y1 > y2) {
+            result = 10000;
+        }else if(y1 == y2 && m1 > m2){
+            result = 500 * (m1 - m2);
+        } else if (d1 > d2) {
+            result = 15 * (d1 - d2);
+        }
+        return result;
+    }
 }
